@@ -8,28 +8,25 @@
 </head>
 <body>
 <form action="add.jsp">
-<%
- request.setCharacterEncoding("utf-8");
-
-int input = Integer.parseInt(request.getParameter("num"));
-int num1=Integer.parseInt(request.getParameter("num1"));
-int num2=Integer.parseInt(request.getParameter("num2"));
-int score=Integer.parseInt(request.getParameter("score"));
-int gameCount=Integer.parseInt(request.getParameter("gameCount"));
-boolean correct=false;
-
-if(input==num1*num2){
-	%>정답<% correct=true;
+<% 
+String str=request.getParameter("input");
+int input=Integer.parseInt(str);
+str=request.getParameter("answer");
+int answer=Integer.parseInt(str);
+if(input<answer){
+	%>업<a href="add.jsp?answer=<%=answer %>&play=gamePlaying">뒤로가기</a>
+	<% 
 }
-else{
+else if(input==answer){
 	%>
-	 오답
-	<% correct=false;
+	정답 <a href="index1.jsp">다시하기</a>
+	<% 
 }
-
+else if(input>answer){
+	%>다운<a href="add.jsp?answer=<%=answer %>&play=gamePlaying">뒤로가기</a>
+	<% 
+}
 %>
-<a href="add.jsp" value=<%=correct %>>뒤로가기</a>
-
 </form>
 
 

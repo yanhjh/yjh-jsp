@@ -11,31 +11,32 @@
 <form action="addPro.jsp">
 <%
 Random rd=new Random();
-int num1=rd.nextInt(8)+2;
+int num1=0;
 
-int num2=rd.nextInt(9)+1;
+%>
+<% 
+String play=request.getParameter("play");
+%>
+<h3>숫자를 입력하세요</h3>
+<input type="number" value ="inputNum" name="input">
+<input type="submit" value="전송">
+<% 
+if(play.equals("gameStart")){
+	num1=rd.nextInt(50)+50;
+}
+else if(play.equals("gamePlaying")){
+	num1=Integer.parseInt(request.getParameter("answer"));
+}
+%>
+<input type="hidden" value="<%=num1%>" name="answer">
 
-int score=0;
-
-int gameCount=0;
 
 
 
-	
-		%>
-		
-		<div ><h2><%= gameCount+1 %>
-	 번째 게임:[  <%= score %>]점</h2>
-	 <%=num1 %>x<%=num2 %>=??<br>
-	<input type="number" value="number" name="num">
-	</div>
-	
-	
-<input type="submit" value="제출하기">
-<input type="hidden" value=<%=num1 %> name="num1">
-<input type="hidden" value=<%=num2 %> name="num2">
-<input type="hidden" value=<%=score %> name="score">
-<input type="hidden" value=<%=gameCount %> name="gameCount">
+
+
+
+
 </form>
 
 </body>
